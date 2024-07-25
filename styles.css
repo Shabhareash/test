@@ -400,14 +400,47 @@ html {
     100% { transform: rotate(360deg); }
 }
 
-#main-content {
-    display: none;
+@media only screen and (max-width: 768px) {
+    :root {
+        --cards: 2;
+        --cards1: 5;
+        --cardHeight: calc(75vh + 20px);
+        --cardMargin: 17vh;
+        margin-top: 0px;
+    }
+    .card-text p {
+        font-size: 8px;
+        transform: rotate(90deg);
+    }
+    .card-text h2{
+        margin-left:250px;
+        
+        transform: rotate(90deg);
+    }
+    .card-text h3{
+        margin-left:130px;
+        transform: rotate(90deg);
+    }
+    .card-body {
+        margin-left: -80px;
+        justify-content: center;
+        box-sizing: border-box;
+        box-shadow: 0 0 30px 0 rgb(255, 255, 255);
+        height: var(--cardHeight);
+        display: flex;
+        transition: all 0.5s;
+        border-radius: 50px;
+        overflow: hidden;
+        margin-top: 15vh;
+        height: 400px;
+        width: 820px;
+        transform: rotate(-90deg);
+    }
+    .card-images img {
+        margin-left:50px;
+        width: 83%;
+        height: 120%;
+        margin-top:-20px;
+        transform: rotate(90deg);
+    }
 }
-
-
-
-
-
-
-
-
