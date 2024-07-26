@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #black;
+    background-color: #f7fafc;
     margin: 0;
     padding-top: 20px;
 }
@@ -400,47 +400,82 @@ html {
     100% { transform: rotate(360deg); }
 }
 
-@media only screen and (max-width: 768px) {
-    :root {
-        --cards: 2;
-        --cards1: 5;
-        --cardHeight: calc(75vh + 20px);
-        --cardMargin: 17vh;
-        margin-top: 0px;
+@media (max-width: 1200px) {
+    ul {
+        margin-block-start: 0.1em;
     }
-    .card-text p {
-        font-size: 8px;
-        transform: rotate(90deg);
+    #card1 .card-body, 
+    #card2 .card-body, 
+    #card3 .card-body, 
+    #card4 .card-body,
+    #card5 .card-body,
+    #card6 .card-body,
+    #card7 .card-body,
+    #card8 .card-body{
+        position: sticky;
+        top: var(--cardMargin);
+        margin-left: 0px;
+        flex-direction: column;
+        height: 90vh;
     }
-    .card-text h2{
-        margin-left:250px;
-        
-        transform: rotate(90deg);
+    #card1 .card-body,
+#card3 .card-body {
+    flex-direction: column;
+}
+
+#card2 .card-body,
+#card4 .card-body {
+    flex-direction: column-reverse;
+}
+#card5 .card-body,
+#card7 .card-body {
+    flex-direction: column;
+}
+
+#card6 .card-body,
+#card8 .card-body {
+    flex-direction: column-reverse;
+}
+
+    li#card1, 
+    li#card2, 
+    li#card3, 
+    li#card4, 
+    li#card5, 
+    li#card6, 
+    li#card7, 
+    li#card8 {
+        margin-left: 0px;
     }
-    .card-text h3{
-        margin-left:130px;
-        transform: rotate(90deg);
-    }
-    .card-body {
-        margin-left: -80px;
-        justify-content: center;
-        box-sizing: border-box;
-        box-shadow: 0 0 30px 0 rgb(255, 255, 255);
-        height: var(--cardHeight);
-        display: flex;
-        transition: all 0.5s;
-        border-radius: 50px;
-        overflow: hidden;
-        margin-top: 15vh;
-        height: 400px;
-        width: 820px;
-        transform: rotate(-90deg);
+    .card-images {
+        width: 30%;
+        border-top-right-radius: 40px;
     }
     .card-images img {
-        margin-left:50px;
-        width: 83%;
-        height: 120%;
-        margin-top:-20px;
-        transform: rotate(90deg);
+        width: 190px;
+        height: 174px;
     }
+    .card-images img:nth-child(2) {
+        border-top-right-radius: 40px;
+    }
+    .card-text {
+        width: 27%;
+        height: calc(90vh - 124px); /* Ensure the remaining height is taken by card text */
+        text-align: center;
+        padding: 20px;
+        border-bottom-right-radius: 40px;
+    }
+    .card-images img:nth-child(2):hover {
+        z-index: 2;
+        transform: translate(-51%,50%) scale(2.03); /* Scales the image on hover (adjust as needed) */
+        transition: transform 0.5s ease-in-out, z-index 0s;
+        border-top-right-radius: 20px;
+      }
+      .card-images img:nth-child(4):hover {
+        z-index: 4;
+        transform: translate(-50%,-51%) scale(2.02); /* Scales the image on hover (adjust as needed) */
+        transition: transform 0.5s ease-in-out, z-index 0s;
+        border-top-right-radius: 20px;
+      }
+      
 }
