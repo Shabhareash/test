@@ -3,164 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amrita CyberNation</title>
+    <title>ACN Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .navbar {
-            transform: translateY(-100%);
-            transition: transform 1.5s ease;
-            height: 100px;
-            width: 100%;
-        }
-
-        .navbar.nav-dropdown {
-            transform: translateY(0);
-        }
-
-        body,
-        html {
+        body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            background-size: cover;
-            background-position: center;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            padding: 25px;
-            background-color: white;
-            color: black;
-            font-size: 25px;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7fafc;
         }
 
         .navbar {
             background-color: #000000;
+            height: 80px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 30px;
-            box-sizing: border-box;
-            z-index: 1000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 80px;
-            width: 100%;
+            transition: transform 1.5s ease, width 1s ease, border-radius 1s ease, margin-left 1s ease, margin-top 1s ease;
             animation: textReveal 2s;
         }
 
         @keyframes textReveal {
-            0% {
-                opacity: 0;
-                transform: translateY(-100px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0px);
-            }
+            0% { opacity: 0; transform: translateY(-100px); }
+            100% { opacity: 1; transform: translateY(0px); }
         }
 
-        .logo img {
+        .navbar.shrink {
             height: 80px;
+            width: 90%;
+            margin-left: calc((100vw - 90vw) / 2);
+            margin-top: 20px;
+            border-radius: 70px;
         }
 
-        .navigation {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            font-size: 15px;
-        }
-
-        .navigation__menu {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .navigation__menu > li {
-            position: relative;
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-        }
-
-        .navigation__menu > li > a {
-            margin-left: 40px;
-            text-decoration: none;
-            color: #ffffff;
-            padding: 7px 7px;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            border-radius: 10px;
-        }
-
-        .navigation__menu > li > a:hover {
-            background-color: #b22049;
-            color: #ffffff;
-        }
-
-        .navarrow {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid #ffffff;
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .navigation__menu > li:hover .navarrow {
-            transform: rotate(180deg);
-        }
-
-        .navigation__submenu {
-            margin-left: 40px !important;
-            position: absolute;
-            top: 100%;
-            left: 10%;
-            width: max-content;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            background-color: #000000;
-            
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            max-height: 0;
-            border-radius: 4px;
-            z-index: 1000;
-            transform: translateY(-10px);
-        }
-
-        .navigation__menu > li:hover .navigation__submenu {
-            opacity: 1;
-            max-height: 300px;
-            transform: translateY(0);
-        }
-
-        .navigation__submenu > li > a {
-            padding: 10px 15px;
-            display: block;
-            text-decoration: none;
-            color: #ffffff;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .navigation__submenu > li > a:hover {
-            background-color: #000000;
-            color: #b22049;
+        .navbar-brand img {
+            height: 90px;
         }
 
         .moving-text {
-            background: black;
             white-space: nowrap;
             position: relative;
             font-size: 20px;
@@ -172,30 +61,19 @@
             width: 51%;
         }
 
-        .moving-text:before,
-        .moving-text:after {
-            position: absolute;
-            top: 0;
-            width: 50px;
-            height: 100%;
-            content: "";
-            z-index: 2;
-        }
-
-        .moving-text:before {
-            left: 0;
-            background: linear-gradient(to left, rgba(0, 0, 0, 0), black);
-        }
-
-        .moving-text:after {
-            right: 0;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0), black);
-        }
-
         .text-slide {
             display: inline-flex;
             align-items: center;
             animation: 10s slide infinite linear;
+        }
+
+        .text-slide:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes slide {
+            from { transform: translateX(0%); }
+            to { transform: translateX(-50%); }
         }
 
         .animated-button {
@@ -216,125 +94,215 @@
             margin: 0 10px;
         }
 
-        .animated-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            z-index: 1;
-            transition: top 0.3s;
-            top: 100%;
-        }
-
-        .animated-button:hover::before {
-            top: 0;
-        }
-
-        .animated-button span {
-            position: relative;
-            z-index: 2;
-            transition: color 0.3s;
-        }
-
         .animated-button:hover {
-            background-color: black;
+            background-color: white;
         }
 
         .animated-button:hover span {
             color: #b22049;
         }
 
-        @keyframes slide {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-100%);
-            }
-        }
-        .navbar {
-    transform: translateY(-100%);
-    transition: transform 1.5s ease;
-    height: 70px; /* Reduced from 100px */
-    width: 100%;
-    background-color: #000000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px; /* Reduced from 30px */
-    box-sizing: border-box;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 70px; /* Reduced from 80px */
-    width: 100%;
-    animation: textReveal 2s;
-}
-
-
-        .moving-text {
-            margin-right: 20px; /* Adjust as needed */
+        .navigation__menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
         }
 
-        /* Updated styles for collapsible navbar */
+        .navigation__menu > li {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .navigation__menu > li > a {
+            color: white;
+            text-decoration: none;
+            padding: 7px 7px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navigation__menu > li > a:hover {
+            background-color: #b22049;
+            color: #ffffff;
+        }
+
+        .navigation__submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #000000;
+            min-width: 200px;
+            display: none;
+            z-index: 1;
+        }
+
+        .navigation__menu > li:hover .navigation__submenu {
+            display: block;
+        }
+
+        .navigation__submenu li {
+            padding: 10px;
+        }
+
+        .navigation__submenu li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navigation__submenu li a:hover {
+            color: #b22049;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+        }
+
+        /* Day sections */
+        .day1, .day2 {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 100px;
+        }
+
+        .custom-container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #list, #list1 {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 17vh;
+        }
+
+        .box {
+            position: sticky;
+            top: 17vh;
+        }
+
+        .box-body {
+            justify-content: center;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px 0 rgb(255, 255, 255);
+            height: 500px;
+            display: flex;
+            transition: all 0.5s;
+            border-radius: 50px;
+            overflow: hidden;
+            margin-top: 15vh;
+            width: 1280px;
+        }
+
+        .box-images {
+            width: 58%;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 5px;
+            background-color: black;
+        }
+
+        .box-images img {
+            width: 372px;
+            height: 247.5px;
+            object-fit: fill;
+            transition: transform 0.5s ease-in-out, z-index 0s 0.5s;
+            z-index: 0;
+        }
+
+        .box-images img:hover {
+            z-index: 1;
+            transform: scale(2.05);
+        }
+
+        .box-text {
+            flex: 1;
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+            color: white;
+        }
+
+        .box-text h2, .box-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0 0 10px 0;
+        }
+
+        .box-text h2 {
+            font-size: 2.5em;
+        }
+
+        .box-text h3 {
+            font-size: 1.1em;
+        }
+
+        .box-text p {
+            text-align: center;
+            max-width: 350px;
+            margin: 0;
+            animation: fallDown 1s ease-out forwards;
+        }
+
         @media (max-width: 992px) {
             .navbar {
-                justify-content: space-between;
-                padding-right: 60px; /* Space for hamburger */
+                padding: 0 20px;
             }
 
+            .moving-text {
+                width: 80%;
+                font-size: 16px;
+            }
+
+            .animated-button {
+                width: 100px;
+                height: 30px;
+                font-size: 12px;
+            }
 
             .navigation {
-                top: 60px !important;
                 display: none;
-                position: fixed;
-                top: 80px; /* Adjust based on your navbar height */
+                position: absolute;
+                top: 80px;
                 left: 0;
                 width: 100%;
                 background-color: #000000;
                 padding: 20px;
                 box-sizing: border-box;
-                opacity: 0;
-                transition: opacity 0.3s ease;
             }
 
             .navigation.active {
-                display: flex;
-                flex-direction: column;
-                opacity: 1;
+                display: block;
             }
 
             .navigation__menu {
                 flex-direction: column;
-                width: 100%;
             }
 
             .navigation__menu > li {
-                width: 100%;
                 margin: 10px 0;
-            }
-            .navigation__menu > li > a:hover{
-              background-color: #b22049;
-              padding: 10px !important;
-              width: 30%;
-            }
-            .navigation__menu > li > a {
-                
-                margin-left:10px;
-                width: 20%;
-                padding: 0px;
-                box-sizing: border-box;
             }
 
             .navigation__submenu {
                 position: static;
                 display: none;
                 width: 100%;
-                background-color: #1a1a1a;
             }
 
             .navigation__submenu.active {
@@ -343,161 +311,339 @@
 
             .hamburger {
                 display: block;
-                cursor: pointer;
-                position: absolute;
-                top: 25px;
-                right: 25px;
-                z-index: 1000;
             }
 
-            .hamburger span {
-                display: block;
-                width: 25px;
-                height: 3px;
-                background-color: white;
-                margin: 5px 0;
+            .box-body {
+                flex-direction: column;
+                width: 90%;
+                height: auto;
             }
 
-            .moving-text {
-                width: calc(100% - 60px); /* Full width minus space for hamburger */
-                margin-right: 0;
+            .box-images, .box-text {
+                width: 100%;
+            }
+
+            .box-images img {
+                width: 100%;
+                height: auto;
             }
         }
-    </style>
     </style>
 </head>
+
 <body>
-    <header>
-        <section id="home" class="section">
-            <nav class="navbar" id="myNav">
-                <a href="index.html#home" class="logo">
-                    <img src="Amrita_CyberNation_Logo___1_-removebg-preview (1).png" alt="Logo">
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+    <div id="main-content" style="display: none;">
+        <header>
+            <section id="home" class="section">
+              <nav class="navbar navbar-expand-lg" id="myNav">
+                <a href="index.html#home" class="logo navbar-brand">
+                  <img src="/image/Amrita_CyberNation_Logo___1_-removebg-preview (1).png" alt="Logo" style="height: 90px;">
                 </a>
-                <div class="moving-text">
-                    <div class="text-slide">
-                        <span>ACN 3rd edition</span>
-                        <span>|</span>
-                        <button class="animated-button"><span>Register Now</span></button>
-                        <span>|</span>
-                        <span>ACN 3rd edition</span>
-                        <span>|</span>
-                        <button class="animated-button"><span>Register Now</span></button>
-                        <span>|</span>
-                        <span>ACN 3rd edition</span>
-                        <span>|</span>
-                        <button class="animated-button"><span>Register Now</span></button>
-                        <span>|</span>
+        
+                <div class="moving-text" style="width: 80%;">
+                  <div class="text-slide">
+                    <span>ACN 3rd edition</span>
+                    <span>|</span>
+                    <a href="/events/2024/event-2024.html"><button class="animated-button"><span>Register
+                          Now</span></button></a>
+                    <span>|</span>
+                    <span>ACN 3rd edition</span>
+                    <span>|</span>
+                    <a href="/events/2024/event-2024.html"><button class="animated-button"><span>Register
+                          Now</span></button></a>
+                    <span>|</span>
+                    <span>ACN 3rd edition</span>
+                    <span>|</span>
+                    <a href="/events/2024/event-2024.html"><button class="animated-button"><span>Register
+                          Now</span></button></a>
+                    <span>|</span>
+                    <span>ACN 3rd edition</span>
+                    <span>|</span>
+                    <a href="/events/2024/event-2024.html"><button class="animated-button"><span>Register
+                          Now</span></button></a>
+                    <span>|</span>
+                  </div>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse navigation" id="navbarNav">
+                  <ul class="navbar-nav ml-auto navigation__menu">
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html#home">Home<span></span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="editionsDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Events 3.0</a>
+                      <div class="dropdown-menu navigation__submenu" aria-labelledby="editionsDropdown">
+                        <a class="dropdown-item" href="#">ACN Cyber conclave</a>
+                        <a class="dropdown-item" href="#">ACN Cyber Workshop</a>
+                        <a class="dropdown-item" href="#">ACN Cyber Tech Fest</a>
+                        <a class="dropdown-item" href="#">ACN Cyber Awareness</a>
+                      </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="editionsDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Editions</a>
+                      <div class="dropdown-menu navigation__submenu" aria-labelledby="editionsDropdown">
+                        <a class="dropdown-item" href="/events/2022/event-2022.html">2022</a>
+                        <a class="dropdown-item" href="/events/2023/event-2023.html">2023</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/sponsors/spon.html">Sponsors<span></span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Gallery</a>
+                      <div class="dropdown-menu navigation__submenu" aria-labelledby="galleryDropdown">
+                        <a class="dropdown-item" href="/gallery-by-year/2022/2022.html">2022</a>
+                        <a class="dropdown-item" href="/gallery-by-year/2023/2023.html">2023</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/meetup/meetup.html">Team<span></span></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </section>
+          </header>
+
+          <div class="day1">
+            <h1>Cyber Conclave</h1>
+        </div>
+        
+        <div class="custom-container">
+            <ul id="list">
+                <li id="item1" class="box">
+                    <div class="box-body">
+                        <div class="box-images">
+                            <img id="img1" src="" alt="Image 1" onmouseover="showtext('Text for Image 1')" onmouseleave="resettext()">
+                            <img id="img2" src="" alt="Image 2" onmouseover="showtext('Text for Image 2')" onmouseleave="resettext()">
+                            <img id="img3" src="" alt="Image 3" onmouseover="showtext('Text for Image 3')" onmouseleave="resettext()">
+                            <img id="img4" src="" alt="Image 4" onmouseover="showtext('Text for Image 4')" onmouseleave="resettext()">
+                        </div>
+                        <div class="box-text">
+                            <h3>Cultivating Innovation in Cybersecurity to Fuel Entrepreneurship</h3>
+                            <p>Panel members:</p>
+                            <p>1. Dr. Subramanian, the Executive Director of SETS, Chennai</p>
+                            <p>2. Mr. K. Sibi: A stalwart in Data Analytics, Generative AI, and Cyber Security.</p>
+                            <p>3. Mr. Natarajan Elangovan: A visionary leader in Cyber Security Strategy, Architecture, and Framework</p>
+                            <p>4. Ms. Nalini Kannan: Zero Trust Solution expert</p>
+                            <p>5. Dr. N. Gopalakrishnan: Former DRDO structural engineering committee member</p>
+                        </div>
                     </div>
-                </div>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="navigation">
-                    <ul class="navigation__menu">
-                        <li>
-                            <a href="index.html#home">Home<span></span></a>
-                        </li>
-                    </ul>
-                    <ul class="navigation__menu">
-                        <li>
-                            <a href="index.html#aboutacn">About<span></span></a>
-                        </li>
-                    </ul>
-                    <ul class="navigation__menu">
-                        <li>
-                            <a href="#">Editions<span class="navarrow"></span></a>
-                            <ul class="navigation__submenu">
-                                <li><a href="#">2022</a></li>
-                                <li><a href="#">2023</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="navigation__menu">
-                        <li>
-                            <a href="index.html#home">Sponsors<span></span></a>
-                        </li>
-                    </ul>
-                    <ul class="navigation__menu">
-                        <li>
-                            <a href="#">Gallery<span class="navarrow"></span></a>
-                            <ul class="navigation__submenu">
-                                <li><a href="#">2022</a></li>
-                                <li><a href="#">2023</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="navigation__menu">
-                        <li>
-                            <a href="index.html#footer">Contact<span></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </section>
-    </header>
+                </li>
+                <li id="item2" class="box">
+                    <div class="box-body">
+                        <div class="box-text">
+                            <h2 id="header5">Box 2</h2>
+                            <p id="card-text5">This is the text for box 2.</p>
+                        </div>
+                        <div class="box-images">
+                            <img id="img5" src="" alt="Image 5">
+                            <img id="img6" src="" alt="Image 6">
+                            <img id="img7" src="" alt="Image 7">
+                            <img id="img8" src="" alt="Image 8">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="day2">
+            <h1>Club Inauguration</h1>
+        </div>
+        
+        <div class="custom-container">
+            <ul id="list">
+                <li id="item3" class="box">
+                    <div class="box-body">
+                        <div class="box-images">
+                            <img id="img9" src="" alt="Image 17">
+                            <img id="img10" src="" alt="Image 18">
+                            <img id="img11" src="" alt="Image 19">
+                            <img id="img12" src="" alt="Image 20">
+                        </div>
+                        <div class="box-text">
+                            <h2 id="header">AMIGOS</h2>
+                            <h3>Amrita Intelligent Gaming and Opti-verse Sports</h3>
+                            <p id="card-tex">We feel privileged to have had Mr. Raghuraman R as our Chief Guest, who graciously unveiled the club’s logo to mark the commencement of our journey. This was followed by the badging ceremony, in which the Chief Guest handed out badges to the club’s office bearers. Following this, our Club’s President, K. Sabari Kumar, elaborated on the vision and mission of AMIGOS.</p>
+                        </div>
+                    </div>
+                </li>
+                <li id="item4" class="box">
+                    <div class="box-body">
+                        <div class="box-text">
+                            <h2 id="h">Fact</h2>
+                            <h3>Forensic Analysis Club Triage</h3>
+                            <p>The club's inauguration was graced by Mr. Palanikumar Arumugam, Vice President - Information Security, Equitas Small Finance Bank, who was our esteemed chief guest. He took center stage to unveil the club logo, symbolizing the beginning of an exciting journey into the world of forensics. Following this significant moment was a Badging Ceremony, where Mr. Palanikumar Arumugam presented badges to the club members, officially welcoming them into FACT.</p>
+                        </div>
+                        <div class="box-images">
+                            <img id="img13" src="" alt="Image 21">
+                            <img id="img14" src="" alt="Image 22">
+                            <img id="img15" src="" alt="Image 23">
+                            <img id="img16" src="" alt="Image 24">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="day2">
+            <h1>Cyber Techfest'23</h1>
+        </div>
+        
+        <div class="custom-container">
+            <ul id="list1">
+                <li id="item5" class="box">
+                    <div class="box-body">
+                        <div class="box-images">
+                            <img id="img17" src="" alt="Image 17">
+                            <img id="img18" src="" alt="Image 18">
+                            <img id="img19" src="" alt="Image 19">
+                            <img id="img20" src="" alt="Image 20">
+                        </div>
+                        <div class="box-text">
+                            <h2 id="heade5">Mystery unveiled</h2>
+                            <p id="card-te5">A cryptic and complicated case mimicking real world scenarios is presented to the participants who are required to use their expertise in physical/cyber forensics to solve the case created by the crafty minds of the FACT club.</p>
+                        </div>
+                    </div>
+                </li>
+                <li id="item6" class="box">
+                    <div class="box-body">
+                        <div class="box-text">
+                            <h2 id="headr6">ACN CTF</h2>
+                            <h3>Amrita Cyber Nation CTF</h3>
+                            <p id="card-text">This is a national level Capture The Flag (CTF) tournament conducted by the department of cyber security which focuses on various aspects such as Cyber Forensics, Reverse Engineering, Cryptography, Web exploitation, and Binary exploitation providing a fun and fulfilling experience for participants. Sponsored by HACK THE BOX.</p>
+                        </div>
+                        <div class="box-images">
+                            <img id="img21" src="" alt="Image 21">
+                            <img id="img22" src="" alt="Image 22">
+                            <img id="img23" src="" alt="Image 23">
+                            <img id="img24" src="" alt="Image 24">
+                        </div>
+                    </div>
+                </li>
+                <li id="item7" class="box">
+                    <div class="box-body">
+                        <div class="box-images">
+                            <img id="img25" src="" alt="Image 25">
+                            <img id="img26" src="" alt="Image 26">
+                            <img id="img27" src="" alt="Image 27">
+                            <img id="img28" src="" alt="Image 28">
+                        </div>
+                        <div class="box-text">
+                            <h2 id="heade7">Game Fusion 3.0</h2>
+                            <p id="card-tet7">Dive into the gaming extravaganza of Game Fusion 3.0 with BGMI, CODM, and Valorant. Showcase your gaming finesse and aim to be the champion in the virtual battlegrounds.</p>
+                        </div>
+                    </div>
+                </li>
+                <li id="item8" class="box">
+                    <div class="box-body">
+                        <div class="box-text">
+                            <h2 id="heaer8">Meta-Verse Experience</h2>
+                            <p id="card-txt8">Swirl into the world of AR-VR technology provided by the Meta-Quest 3 in this event conducted by the AMIGOS club. Test out beta features, gaming, fitness and more.</p>
+                        </div>
+                        <div class="box-images">
+                            <img id="img29" src="" alt="Image 29">
+                            <img id="img30" src="" alt="Image 30">
+                            <img id="img31" src="" alt="Image 31">
+                            <img id="img32" src="" alt="Image 32">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </div>
+        
 
-    <script>
-        window.onload = function () {
-            var nav = document.getElementById("myNav");
-            nav.classList.add("nav-dropdown");
+
+<!-- Firebase scripts -->
+<script defer src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+<!-- Custom scripts -->
+<script defer src="script.js"></script>
+<script defer src="firebase.js"></script>
+<script defer src="img.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+      $('.navbar-toggler').on('click', function() {
+        $(this).find('.navbar-toggler-icon').toggleClass('active');
+        if ($('.navbar-toggler-icon').hasClass('active')) {
+          $('.navbar-toggler-icon').html('&times;');
+        } else {
+          $('.navbar-toggler-icon').html('');
+          $('.navbar-toggler-icon').addClass('navbar-toggler-icon');
         }
+      });
+  
+      $(window).on('scroll', function() {
+        var navbar = $('#myNav');
+        var scrollTop = $(this).scrollTop();
+        var lastScrollTop = 0;
+        
+        if (scrollTop > 0) {
+          navbar.addClass('shrink');
+        } else {
+          navbar.removeClass('shrink');
+        }
+  
+        if (scrollTop > lastScrollTop) {
+          navbar.addClass('scrolledup');
+        } else {
+          navbar.removeClass('scrolledup');
+        }
+  
+        lastScrollTop = scrollTop;
+      });
+  
+      // New dropdown hover functionality
+      var dropdownTimeout;
+      $('.navbar-nav .dropdown').hover(
+        function() {
+          var $this = $(this);
+          clearTimeout(dropdownTimeout);
+          $this.addClass('show');
+          $this.find('.dropdown-menu').addClass('show');
+        },
+        function() {
+          var $this = $(this);
+          dropdownTimeout = setTimeout(function() {
+            $this.removeClass('show');
+            $this.find('.dropdown-menu').removeClass('show');
+          }, 200); // 200ms delay before closing
+        }
+      );
+  
+      $('.navbar-nav .dropdown-menu').hover(
+        function() {
+          clearTimeout(dropdownTimeout);
+        },
+        function() {
+          var $dropdown = $(this).closest('.dropdown');
+          dropdownTimeout = setTimeout(function() {
+            $dropdown.removeClass('show');
+            $dropdown.find('.dropdown-menu').removeClass('show');
+          }, 200); // 200ms delay before closing
+        }
+      );
+    });
+  </script>
 
-        document.addEventListener("DOMContentLoaded", function () {
-            var navbar = document.querySelector(".navbar");
 
-            window.addEventListener("scroll", function () {
-                if (window.scrollY > 50) {
-                    navbar.classList.add("scrolled");
-                } else {
-                    navbar.classList.add("scrolledup");
-                    navbar.classList.remove("scrolled");
-                }
-            })});
 
-            var textSlide = document.querySelector(".text-slide").cloneNode(true);
-            document.querySelector(".moving-text").appendChild(textSlide);
-            document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navigation = document.querySelector('.navigation');
-            const submenus = document.querySelectorAll('.navigation__submenu');
-            const menuItems = document.querySelectorAll('.navigation__menu > li > a');
-
-            hamburger.addEventListener('click', function() {
-                navigation.classList.toggle('active');
-            });
-
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 992) {
-                        e.preventDefault();
-                        const submenu = this.nextElementSibling;
-                        if (submenu) {
-                            submenu.classList.toggle('active');
-                        } else {
-                            navigation.classList.remove('active');
-                        }
-                    }
-                });
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!navigation.contains(e.target) && !hamburger.contains(e.target)) {
-                    navigation.classList.remove('active');
-                    submenus.forEach(submenu => submenu.classList.remove('active'));
-                }
-            });
-
-            // Adjust menu on window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 992) {
-                    navigation.classList.remove('active');
-                    submenus.forEach(submenu => submenu.classList.remove('active'));
-                }
-            });
-        });
-    </script>
 </body>
 </html>
