@@ -439,7 +439,12 @@ html {
       transform: rotate(360deg);
   }
 }
-
+@media screen and (max-width: 992px){
+  .box-body{
+    margin-top:0px !important
+    ;
+  }
+}
 /* Responsive styles for mobile */
 @media screen and (max-width: 768px) {
   ul {
