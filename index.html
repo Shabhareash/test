@@ -580,7 +580,22 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="three.r134.min.js"></script>
+<script src="vanta.waves.min.js"></script>
+<script>
+VANTA.WAVES({
+  el: "#ani",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 2280.00,
+  minWidth: 500.00,
+  scale: 1.00,
+  scaleMobile: .20,
+  color: 0xd0d0e,
+  shininess: 7.00
+})
+</script>
 <script>
     $(document).ready(function(){
       $('.navbar-toggler').on('click', function() {
