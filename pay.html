@@ -61,7 +61,7 @@ button:hover {
     };
 
     // Construct UPI URL
-    const upiUrl = `upi://pay?pa=${encodeURIComponent(upiParams.pa)}&pn=${encodeURIComponent(upiParams.pn)}&tn=${encodeURIComponent(upiParams.tn)}&am=${encodeURIComponent(upiParams.am)}&cu=${encodeURIComponent(upiParams.cu)}`;
+    const upiUrl = `gpay://pay?pa=${encodeURIComponent(upiParams.pa)}&pn=${encodeURIComponent(upiParams.pn)}&tn=${encodeURIComponent(upiParams.tn)}&am=${encodeURIComponent(upiParams.am)}&cu=${encodeURIComponent(upiParams.cu)}`;
 
     // Attempt to open the UPI URL
     window.location.href = upiUrl;
