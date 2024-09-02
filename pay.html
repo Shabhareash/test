@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Pay Link</title>
+    <title>Payment Links</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -15,6 +16,7 @@
         }
         .button {
             padding: 15px 30px;
+            margin: 10px;
             font-size: 16px;
             color: #fff;
             background-color: #34b7f1;
@@ -22,13 +24,51 @@
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
+            text-align: center;
+            width: 200px;
         }
         .button:hover {
             background-color: #28a7e0;
         }
+        .paytm {
+            background-color: #003399;
+        }
+        .paytm:hover {
+            background-color: #002366;
+        }
+        .phonepe {
+            background-color: #5c2d91;
+        }
+        .phonepe:hover {
+            background-color: #4a2176;
+        }
     </style>
 </head>
 <body>
-    <a href="gpay://upi/pay?pa=aravindpradeep7046@okhdfcbank&pn=JohnDoe&am=10.00&cu=INR" class="button" target="_blank">Pay with Google Pay</a>
+
+    <!-- Buttons with dynamic links -->
+    <a id="gpay-button" class="button" target="_blank">Pay with Google Pay</a>
+    <a id="phonepe-button" class="button phonepe" target="_blank">Pay with PhonePe</a>
+    <a id="paytm-button" class="button paytm" target="_blank">Pay with Paytm</a>
+
+    <script>
+        // Declare variables
+        const upiID = "aravindpradeep7046@okhdfcbank";
+        const payeeName = "JohnDoe";
+        const amount = "10.00";
+        const currency = "INR";
+        const transactionNote = "Payment+Description";
+
+        // Generate UPI links
+        const gpayLink = `gpay://upi/pay?pa=${upiID}&pn=${payeeName}&am=${amount}&cu=${currency}&tn=${transactionNote}`;
+        const phonepeLink = `phonepe://pay?pa=${upiID}&pn=${payeeName}&am=${amount}&cu=${currency}&tn=${transactionNote}`;
+        const paytmLink = `paytmmp://pay?pa=${upiID}&pn=${payeeName}&am=${amount}&cu=${currency}&tn=${transactionNote}`;
+
+        // Set href attributes
+        document.getElementById('gpay-button').setAttribute('href', gpayLink);
+        document.getElementById('phonepe-button').setAttribute('href', phonepeLink);
+        document.getElementById('paytm-button').setAttribute('href', paytmLink);
+    </script>
+
 </body>
 </html>
