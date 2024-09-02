@@ -3,66 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPI Payment Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .btn {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #fff;
-        }
-        .gpay {
-            background-color: #4285f4;
-        }
-        .phonepe {
-            background-color: #5a2aa2;
-        }
-        .paytm {
-            background-color: #003087;
-        }
-    </style>
+    <title>UPI Payment</title>
+	<style>
+		.payment-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+	</style>
 </head>
 <body>
+    <div class="payment-container">
+        <h2>Pay using UPI</h2>
+        <input type="text" id="amount" placeholder="Enter amount" />
+        <button id="payButton">Pay Now</button>
+    </div>
 
-<div class="container">
-    <h2>Pay with UPI</h2>
-    <p>Amount to Pay: ₹300</p>
-    <button class="btn gpay" onclick="payWithUPI('gpay')">Pay with Google Pay</button>
-    <button class="btn phonepe" onclick="payWithUPI('phonepe')">Pay with PhonePe</button>
-    <button class="btn paytm" onclick="payWithUPI('paytm')">Pay with Paytm</button>
-</div>
+    <script>
+	document.getElementById('payButton').addEventListener('click', function() {
+    const amount = document.getElementById('amount').value;
 
-<script>
-    function payWithUPI(app) {
-        const upiID = '@okicici';  
-        const amount = 300;  
-        const name = 'Gpay'; 
-        const transactionNote = 'Payment for Event';  
-        const upiURL = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
-
-        window.location.href = upiURL;
+    // Validate amount
+    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+        alert('Please enter a valid amount.');
+        return;
     }
-</script>
 
+    // UPI URL parameters
+    const upiParams = {
+        pa: 'aravindpradeep7046@okhdfcbank',  // Payee address (VPA)
+        pn: 'ACN',                // Payee name
+        mc: '',                   // Merchant code (optional)
+        tid: '',                  // Transaction ID (optional)
+        tr: '',                   // Transaction reference ID (optional)
+        tn: 'Payment for Event Registration', // Transaction note
+        am: amount,               // Amount
+        cu: 'INR'                 // Currency
+    };
+
+    // Construct UPI URL
+    const upiUrl = `upi://pay?pa=${encodeURIComponent(upiParams.pa)}&pn=${encodeURIComponent(upiParams.pn)}&tn=${encodeURIComponent(upiParams.tn)}&am=${encodeURIComponent(upiParams.am)}&cu=${encodeURIComponent(upiParams.cu)}`;
+
+    // Attempt to open the UPI URL
+    window.location.href = upiUrl;
+});
+
+	</script>
 </body>
 </html>
